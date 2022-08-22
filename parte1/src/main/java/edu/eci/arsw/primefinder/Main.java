@@ -13,10 +13,8 @@ public class Main {
 //		pft3.start();
 
 
-		synchronized (pft1){
-			long e = System.currentTimeMillis();
-			double time = e - s;
-			while (time <= (long) 500.0){
+		synchronized (pft1) {
+			while (System.currentTimeMillis() - s <= 5000){
 				System.out.println(time);
 				try {
 					pft1.wait();
