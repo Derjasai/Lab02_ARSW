@@ -40,7 +40,7 @@ Al iniciar la aplicación, hay un primer error evidente: los resultados (total r
 
 Taller.
 
-1.  Corrija la aplicación para que el aviso de resultados se muestre
+1. Corrija la aplicación para que el aviso de resultados se muestre
     sólo cuando la ejecución de todos los hilos ‘galgo’ haya finalizado.
     Para esto tenga en cuenta:
 
@@ -48,22 +48,47 @@ Taller.
 
     b.  Puede utilizarse el método join() de la clase Thread para sincronizar el hilo que inicia la carrera, con la finalización de los hilos de los galgos.
 
-2.  Una vez corregido el problema inicial, corra la aplicación varias
+    ![img.png](img/media/img2.png)
+    ![img.png](img/media/img1.png)
+
+2. Una vez corregido el problema inicial, corra la aplicación varias
     veces, e identifique las inconsistencias en los resultados de las
     mismas viendo el ‘ranking’ mostrado en consola (algunas veces
     podrían salir resultados válidos, pero en otros se pueden presentar
     dichas inconsistencias). A partir de esto, identifique las regiones
     críticas () del programa.
 
-3.  Utilice un mecanismo de sincronización para garantizar que a dichas
+    * Al correr el programa varias veces observamos que en algunas ocasiones no cuenta correctamente el total de galgos:
+   
+    ![img.png](img/media/img3.png)
+
+    * En otras ocasiones vemos que más de un galgo llega en una posición específica:
+   
+    ![img.png](img/media/img4.png)
+
+    Las regiones críticas del programa que encontramos son:
+   - Al verificar la posición que ocupa un galgo en la carrera este puede estar consultando al mismo tiempo que otro galgo.
+
+3. Utilice un mecanismo de sincronización para garantizar que a dichas
     regiones críticas sólo acceda un hilo a la vez. Verifique los
     resultados.
+    
+    Se sincronizó la parte en donde se obtiene la posición alcanzada:
+    ![img.png](img/media/img5.png)
+    Obteniendo los siguientes resultados:
+    ![img.png](img/media/img6.png)
 
-4.  Implemente las funcionalidades de pausa y continuar. Con estas,
+4. Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos
     deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks provistos por el lenguaje (wait y notifyAll).
-
+    
+    Implementación:
+    ![img.png](img/media/img8.png)
+    ![img.png](img/media/img9.png)
+    ![img.png](img/media/img10.png)
+    Salida:
+    ![img.png](img/media/img7.png)
 
 ## Criterios de evaluación
 
