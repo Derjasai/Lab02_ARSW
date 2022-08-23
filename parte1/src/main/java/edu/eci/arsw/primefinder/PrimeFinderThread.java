@@ -25,8 +25,6 @@ public class PrimeFinderThread extends Thread{
 				isRunning();
 			}
 		}
-		
-		
 	}
 	
 	boolean isPrime(int n) {

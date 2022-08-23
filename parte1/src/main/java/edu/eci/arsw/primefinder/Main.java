@@ -24,7 +24,7 @@ public class Main {
 		}
 		//Saber la hora actual de este momento del programa
 		long cur = System.currentTimeMillis();
-
+		
 		//Saber cuanto tiempo a transcurrido desde que el programa inció
 		long seconds = cur - st;
 
