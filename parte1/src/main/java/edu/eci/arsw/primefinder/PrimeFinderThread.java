@@ -7,6 +7,7 @@ public class PrimeFinderThread extends Thread{
 
 	
 	int a,b;
+	boolean running = true;
 	
 	private List<Integer> primes=new LinkedList<Integer>();
 	
@@ -20,7 +21,8 @@ public class PrimeFinderThread extends Thread{
 		for (int i=a;i<=b;i++){						
 			if (isPrime(i)){
 				primes.add(i);
-//				System.out.println(i);
+				System.out.println(i);
+				isRunning();
 			}
 		}
 		
@@ -39,8 +41,34 @@ public class PrimeFinderThread extends Thread{
 	public List<Integer> getPrimes() {
 		return primes;
 	}
-	
-	
+
+	/**
+	 * Pausar el trabajo de los hilos
+	 */
+	public synchronized void pause(){
+		running = false;
+	}
+
+	/**
+	 * Reaundar el trabajo de los hilos
+	 */
+	public synchronized void resumes(){
+		running = true;
+		notifyAll();
+	}
+
+	/**
+	 * En caso de que el programa no este corriendo se pausa.
+	 */
+	public synchronized void isRunning(){
+		while (!running){
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
 }
